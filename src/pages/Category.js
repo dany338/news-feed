@@ -33,8 +33,10 @@ const Category = ({ match }) => {
       try {
         setIsLoading(true)
         const response = await fetch(`https://api.canillitapp.com/news/category/${categoryId}`)
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
         const data = await response.json()
-
         if (data.error) {
           throw new Error(data.error)
         }
