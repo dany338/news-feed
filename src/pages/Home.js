@@ -20,7 +20,6 @@ class Home extends Component {
   async componentDidMount() {
     const { currentDate } = this.state
     const dateFormatted = currentDate.format('YYYY[-]MM[-]DD')
-
     try {
 
       this.setState({ isLoading: true })
