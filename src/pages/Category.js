@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 
+const categoriesId = {
+  politica: 1,
+  internacionales: 2,
+  tecnologia: 3,
+  espectaculos: 4,
+  deportes: 5
+}
+
 const Category = ({ match }) => {
   const category = match.params.category
-  const categories = [
-    { name: 'politica', id: 1 },
-    { name: 'internacionales', id: 2 },
-    { name: 'tecnologia', id: 3 },
-    { name: 'espectaculos', id: 4 },
-    { name: 'deportes', id: 5 }
-  ]
-  const categoryFilter = categories.find(item => item.name === category)
-  const { id, name } = categoryFilter
+  // const categoryFilter = categoriesId.find(item => item.name === category)
+  // const { id, name } = categoryFilter
+  const id = categoriesId[category];
   const [err, setError] = useState(null);
   const [categoryId, setCategoryId] = useState(id);
-  const [categoryName, setCategoryName] = useState(name);
+  const [categoryName, setCategoryName] = useState(category);
   const [isLoading, setIsLoading] = useState(false);
   const [newsBackup, setNewsBackup] = useState([]);
   const [newsFilter, setNewsFilter] = useState([]);
-  console.log('id', id, name)
+  console.log('id', id, category)
 
   useEffect(() => {
     console.log('categoryId', categoryId)
     if(categoryId !== id) {
       console.log('diferente', categoryId, id)
       setCategoryId(id)
-      setCategoryName(name)
+      setCategoryName(category)
       console.log('actualizado', categoryId)
 
     }
@@ -51,7 +53,7 @@ const Category = ({ match }) => {
       }
     }
     getNewsPerCategory()
-  }, [categoryId, id, name]);
+  }, [categoryId, id, category]);
 
   return (
     <div>

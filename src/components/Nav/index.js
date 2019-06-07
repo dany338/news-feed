@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyledNav, StyledLink, StyledP } from './styled'
 
-const categories = [
-  { name: 'politica', text: 'Política' },
-  { name: 'internacionales', text: 'Internacionales' },
-  { name: 'tecnologia', text: 'Tecnología' },
-  { name: 'espectaculos', text: 'Espectáculos' },
-  { name: 'deportes', text: 'Deportes' }
-]
+const categoriesId = {
+  politica: 'politica',
+  internacionales: 'internacionales',
+  tecnologia: 'tecnologia',
+  espectaculos: 'espectaculos',
+  deportes: 'deportes'
+}
 
 const Nav = () => {
   return (
@@ -25,9 +25,12 @@ const Nav = () => {
           <StyledLink to="/">
             <p className="navbar-item">HOME</p>
           </StyledLink>
-          {categories.map(category => (
-            <StyledLink to={`/categoria/${category.name}`} key={category.name}>
-              <p className="navbar-item">{category.text}</p>
+          {/*
+            const result = Array.from(Object.keys(categoriesId), cat => ( console.log(cat) ) ))
+            const result2 = Object.keys(categoriesId).map((key, index) => ( console.log(categoriesId[key]) )) */}
+          {Object.keys(categoriesId).map((key, index) => (
+            <StyledLink to={`/categoria/${categoriesId[key]}`} key={index}>
+              <p className="navbar-item">{categoriesId[key].charAt(0).toUpperCase() + categoriesId[key].slice(1)}</p>
             </StyledLink>
           ))}
         </div>
